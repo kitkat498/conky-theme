@@ -1,0 +1,108 @@
+background yes
+use_xft yes
+xftfont FreeSans:bold:size=9
+xftalpha 1
+update_interval 1
+total_run_times 0
+own_window yes
+own_window_transparent no
+own_window_type panel
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 0
+maximum_width 1000
+draw_shades yes
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+default_color 111b3f
+default_outline_color white
+alignment top_right
+gap_x -1912
+gap_y 0
+no_buffers yes
+uppercase no
+override_utf8_locale yes
+own_window_argb_visual yes
+own_window_argb_value  50
+cpu_avg_samples 4
+border_width 35
+default_shade_color black
+
+TEXT
+# system
+${color white}${alignc}${font FreeSans:Bold:size=15}${time %H:%M}${font}
+${color 57B082}${voffset -11}${hr 2}
+
+
+${image ~/.conky/border.png -p -1,0 -s 35x1500}${color1}${font}${voffset -10}${font FreeSans:Bold:size=10}${color 57B082}SYSTEM${color FFFFFF}${hr 2}${font}‎
+
+O.S. $alignr Arch-linux
+Hostname $alignr $nodename
+$sysname $kernel $alignr $machine
+Uptime $alignr $uptime
+
+# CPU
+${voffset -3}${font FreeSans:Bold:size=10}${color 57B082}CPU ${color FFFFFF}${hr 2}
+
+Cpu model:${font FreeSans:Bold:size=9.5}${color B1D0C9}${execi 2 lscpu | grep "Model name" | sed -r 's/Model name:\s{1,}(.*) @ .*z\s*/\1/g'}
+${font FreeSans:Bold:size=10}${color white}Cpu frequency: ${color B1D0C9}${freq_g cpu0}GHz
+${color white}Core temps:
+${color gray}Core 1:   Core 2:   Core 3:   Core 4:
+${color B1D0C9}${execi 2 sensors | grep 'Core 0:' | cut -c17-22}C    ${color B1D0C9}${execi 2 sensors | grep 'Core 1:' | cut -c17-22}C   ${color B1D0C9}${execi 2 sensors | grep 'Core 2:' | cut -c17-22}C    ${color B1D0C9}${execi 2 sensors | grep 'Core 3:' | cut -c17-22}C
+${color white}Average cpu temp: ${color B1D0C9}${execi 2 sensors | grep 'Package id 0:' | cut -c17-22}C
+
+${color white}Core usages:
+${color gray}Core 1:  ${color green}${if_match ${cpu cpu1}<=20}${color 57B082}${cpu cpu1} ${else}${if_match ${cpu cpu1}<=30}${color 57B081}${cpu cpu1} ${else}${if_match ${cpu cpu1}<=40}${color 64B057}${cpu cpu1} ${else}${if_match ${cpu cpu1}<=50}${color 8EB057}${cpu cpu1}${else}${if_match ${cpu cpu1}<=60}${color AAB057}${cpu cpu1} ${else}${if_match ${cpu cpu1}<=70}${color B0A357}${cpu cpu1} ${else}${if_match ${cpu cpu1}<=80}${color C28751}${cpu cpu1} ${else}${if_match ${cpu cpu1}<=100}${color B06057}${cpu cpu1}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}%${color green}${if_match ${cpu cpu1}<=20}${color 57B082}${cpubar cpu1 10,} ${else}${if_match ${cpu cpu1}<=30}${color 57B081}${cpubar cpu1 10,} ${else}${if_match ${cpu cpu1}<=40}${color 64B057}${cpubar cpu1 10,} ${else}${if_match ${cpu cpu1}<=50}${color 8EB057}${cpubar cpu1 10,}${else}${if_match ${cpu cpu1}<=60}${color AAB057}${cpubar cpu1 10,} ${else}${if_match ${cpu cpu1}<=70}${color B0A357}${cpubar cpu1 10,} ${else}${if_match ${cpu cpu1}<=80}${color C28751}${cpubar cpu1 10,} ${else}${if_match ${cpu cpu1}<=100}${color B06057}${cpubar cpu1 10,}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}
+${color gray}Core 2:  ${color green}${if_match ${cpu cpu2}<=20}${color 57B082}${cpu cpu2} ${else}${if_match ${cpu cpu2}<=30}${color 57B081}${cpu cpu2} ${else}${if_match ${cpu cpu2}<=40}${color 64B057}${cpu cpu2} ${else}${if_match ${cpu cpu2}<=50}${color 8EB057}${cpu cpu2}${else}${if_match ${cpu cpu2}<=60}${color AAB057}${cpu cpu2} ${else}${if_match ${cpu cpu2}<=70}${color B0A357}${cpu cpu2} ${else}${if_match ${cpu cpu2}<=80}${color C28751}${cpu cpu2} ${else}${if_match ${cpu cpu2}<=100}${color B06057}${cpu cpu2}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}%${color green}${if_match ${cpu cpu2}<=20}${color 57B082}${cpubar cpu2 10,} ${else}${if_match ${cpu cpu4}<=30}${color 57B081}${cpubar cpu2 10,} ${else}${if_match ${cpu cpu2}<=40}${color 64B057}${cpubar cpu2 10,} ${else}${if_match ${cpu cpu2}<=50}${color 8EB057}${cpubar cpu2 10,}${else}${if_match ${cpu cpu2}<=60}${color AAB057}${cpubar cpu2 10,} ${else}${if_match ${cpu cpu2}<=70}${color B0A357}${cpubar cpu2 10,} ${else}${if_match ${cpu cpu2}<=80}${color C28751}${cpubar cpu2 10,} ${else}${if_match ${cpu cpu2}<=100}${color B06057}${cpubar cpu2 10,}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}
+${color gray}Core 3:  ${color green}${if_match ${cpu cpu3}<=20}${color 57B082}${cpu cpu3} ${else}${if_match ${cpu cpu3}<=30}${color 57B081}${cpu cpu3} ${else}${if_match ${cpu cpu3}<=40}${color 64B057}${cpu cpu3} ${else}${if_match ${cpu cpu3}<=50}${color 8EB057}${cpu cpu3}${else}${if_match ${cpu cpu3}<=60}${color AAB057}${cpu cpu3} ${else}${if_match ${cpu cpu3}<=70}${color B0A357}${cpu cpu3} ${else}${if_match ${cpu cpu3}<=80}${color C28751}${cpu cpu3} ${else}${if_match ${cpu cpu3}<=100}${color B06057}${cpu cpu3}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}%${color green}${if_match ${cpu cpu3}<=20}${color 57B082}${cpubar cpu3 10,} ${else}${if_match ${cpu cpu3}<=30}${color 57B081}${cpubar cpu3 10,} ${else}${if_match ${cpu cpu3}<=40}${color 64B057}${cpubar cpu3 10,} ${else}${if_match ${cpu cpu3}<=50}${color 8EB057}${cpubar cpu3 10,}${else}${if_match ${cpu cpu3}<=60}${color AAB057}${cpubar cpu3 10,} ${else}${if_match ${cpu cpu3}<=70}${color B0A357}${cpubar cpu3 10,} ${else}${if_match ${cpu cpu3}<=80}${color C28751}${cpubar cpu3 10,} ${else}${if_match ${cpu cpu3}<=100}${color B06057}${cpubar cpu3 10,}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}
+${color gray}Core 4:  ${color green}${if_match ${cpu cpu4}<=20}${color 57B082}${cpu cpu4} ${else}${if_match ${cpu cpu4}<=30}${color 57B081}${cpu cpu4} ${else}${if_match ${cpu cpu4}<=40}${color 64B057}${cpu cpu4} ${else}${if_match ${cpu cpu4}<=50}${color 8EB057}${cpu cpu4}${else}${if_match ${cpu cpu4}<=60}${color AAB057}${cpu cpu4} ${else}${if_match ${cpu cpu4}<=70}${color B0A357}${cpu cpu4} ${else}${if_match ${cpu cpu4}<=80}${color C28751}${cpu cpu4} ${else}${if_match ${cpu cpu4}<=100}${color B06057}${cpu cpu4}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}%${color green}${if_match ${cpu cpu4}<=20}${color 57B082}${cpubar cpu4 10,} ${else}${if_match ${cpu cpu4}<=30}${color 57B081}${cpubar cpu4 10,} ${else}${if_match ${cpu cpu4}<=40}${color 64B057}${cpubar cpu4 10,} ${else}${if_match ${cpu cpu4}<=50}${color 8EB057}${cpubar cpu4 10,}${else}${if_match ${cpu cpu4}<=60}${color AAB057}${cpubar cpu4 10,} ${else}${if_match ${cpu cpu4}<=70}${color B0A357}${cpubar cpu4 10,} ${else}${if_match ${cpu cpu4}<=80}${color C28751}${cpubar cpu4 10,} ${else}${if_match ${cpu cpu4}<=100}${color B06057}${cpubar cpu4 10,}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}
+
+${color white}Average cpu usage: ${color B1D0C9}$alignr ${color green}${if_match ${cpu cpu0}<=20}${color 57B082}${cpu cpu0} ${else}${if_match ${cpu cpu0}<=30}${color 57B081}${cpu cpu0} ${else}${if_match ${cpu cpu0}<=40}${color 64B057}${cpu cpu0} ${else}${if_match ${cpu cpu0}<=50}${color 8EB057}${cpu cpu0}${else}${if_match ${cpu cpu0}<=60}${color AAB057}${cpu cpu0} ${else}${if_match ${cpu cpu0}<=70}${color B0A357}${cpu cpu0} ${else}${if_match ${cpu cpu0}<=80}${color C28751}${cpu cpu0} ${else}${if_match ${cpu cpu0}<=100}${color B06057}${cpu cpu0}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}%
+ ${color white}${cpugraph 40,280 00FF00 990000  -t 100}
+
+# GPU
+${voffset -8}${font FreeSans:Bold:size=10}${color 57B082}GPU ${color FFFFFF}${hr 2}
+
+${color1}GPU:${color B1D0C9}${exec nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits} $color
+${color1}Gpu temperature:  ${color B1D0C9}${exec nvidia-smi | grep 'Default' | cut -c 9-11} $color
+${color1}GPU Usage: ${color}${color B1D0C9}${exec nvidia-smi | grep % | cut -c 61-63} %
+${color1}VRAM Usage: ${color} ${color B1D0C9}${exec nvidia-smi | grep % | cut -c 37-40} MB
+
+# Processes
+${color1}${font}${voffset -7}${font FreeSans:Bold:size=10}${color 57B082}TOP PROCESSES${color FFFFFF}${hr 2}
+
+${font Freesans:Bold:size=10}${color EDE0FF}Name       ${alignr}CPU%           ${goto -100}RAM
+${color gray}${top name 1} ${color B1D0C9}${alignr}${top cpu 1}%      ${goto -200}${top_mem mem_res 1}‎
+${color gray}${top name 2} ${color B1D0C9}${alignr}${top cpu 2}%      ${goto -200}${top_mem mem_res 2}
+${color gray}${top name 3} ${color B1D0C9}${alignr}${top cpu 3}%      ${goto -200}${top_mem mem_res 3}‎
+${color gray}${top name 4} ${color B1D0C9}${alignr}${top cpu 4}%      ${goto -200}${top_mem mem_res 4}
+
+# memory
+${voffset -5}${font FreeSans:Bold:size=10}${color 57B082}RAM ${color FFFFFF}${hr 2}
+
+${color FFFFFF}${font FreeSans:bold:size=9}RAM$font
+$mem / $memmax $alignr ${color green}${if_match ${memperc}<=20}${color 57B082}${memperc 10,}% ${else}${if_match ${memperc}<=30}${color 57B081}${memperc 10,}% ${else}${if_match ${memperc}<=40}${color 64B057}${memperc 10,}% ${else}${if_match ${memperc}<=50}${color 8EB057}${memperc 10,}%${else}${if_match ${memperc}<=60}${color AAB057}${memperc 10,}% ${else}${if_match ${memperc}<=70}${color B0A357}${memperc 10,}% ${else}${if_match ${memperc}<=80}${color C28751}${memperc 10,}% ${else}${if_match ${memperc}<=90}${color B06057}${memperc 10,}%${endif}${endif}${endif}${endif}${color}${endif}${endif}${endif}${endif}
+${color green}${if_match ${memperc}<=20}${color 57B082}${membar 10,} ${else}${if_match ${memperc}<=30}${color 57B081}${membar 10,} ${else}${if_match ${memperc}<=40}${color 64B057}${membar 10,} ${else}${if_match ${memperc}<=50}${color 8EB057}${membar 10,}${else}${if_match ${memperc}<=60}${color AAB057}${membar 10,} ${else}${if_match ${memperc}<=70}${color B0A357}${membar 10,} ${else}${if_match ${memperc}<=80}${color C28751}${membar 10,} ${else}${if_match ${memperc}<=90}${color B06057}${membar 10,}${endif}${endif}${endif}${endif}${color}${endif}${endif}${endif}${endif}
+
+# disks
+${color1}${font} ${voffset -10}${font FreeSans:Bold:size=10}${color 57B082}DISKS${color FFFFFF}${hr 2}
+
+${font FreeSans:bold:size=9}SSD $font$alignr sda6
+${fs_used /home} / ${fs_size /home} ${color B1D0C9}$alignr ${color green}${if_match ${fs_used_perc /home}<=20}${color 57B082}${fs_used_perc /home} ${else}${if_match ${fs_used_perc /home}<=30}${color 57B081}${fs_used_perc /home} ${else}${if_match ${fs_used_perc /home}<=40}${color 64B057}${fs_used_perc /home} ${else}${if_match ${fs_used_perc /home}<=50}${color 8EB057}${fs_used_perc /home}${else}${if_match ${fs_used_perc /home}<=60}${color AAB057}${fs_used_perc /home} ${else}${if_match ${fs_used_perc /home}<=70}${color B0A357}${fs_used_perc /home} ${else}${if_match ${fs_used_perc /home}<=80}${color C28751}${fs_used_perc /home} ${else}${if_match ${fs_used_perc /home}<=90}${color B06057}${fs_used_perc /home}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif} %
+${if_match ${fs_used_perc /home}<=20}${color 57B082}${fs_bar  10 /home} ${else}${if_match ${fs_used_perc /home}<=30}${color 57B081}${fs_bar  10 /home} ${else}${if_match ${fs_used_perc /home}<=40}${color 64B057}${fs_bar  10 /home} ${else}${if_match ${fs_used_perc /home}<=50}${color 8EB057}${fs_bar  10 /home}${else}${if_match ${fs_used_perc /home}<=60}${color AAB057}${fs_bar  10 /home} ${else}${if_match ${fs_used_perc /home}<=70}${color B0A357}${fs_bar  10 /home} ${else}${if_match ${fs_used_perc /home}<=80}${color C28751}${fs_bar  10 /home} ${else}${if_match ${fs_used_perc /home}<=90}${color B06057}${fs_bar  10 /home}${endif}${endif}${endif}${endif}${color}${endif}${endif}${endif}${endif}
+${color white}${font FreeSans:bold:size=9}HDD $font$alignr sdb2
+${fs_used /mnt/HDD/} / ${fs_size /mnt/HDD/} ${color B1D0C9}$alignr ${color green}${if_match ${fs_used_perc /mnt/HDD}<=20}${color 57B082}${fs_used_perc /mnt/HDD} ${else}${if_match ${fs_used_perc /mnt/HDD}<=30}${color 57B081}${fs_used_perc /mnt/HDD} ${else}${if_match ${fs_used_perc /mnt/HDD}<=40}${color 64B057}${fs_used_perc /mnt/HDD} ${else}${if_match ${fs_used_perc /mnt/HDD}<=50}${color 8EB057}${fs_used_perc /mnt/HDD}${else}${if_match ${fs_used_perc /mnt/HDD}<=60}${color AAB057}${fs_used_perc /mnt/HDD} ${else}${if_match ${fs_used_perc /mnt/HDD}<=70}${color B0A357}${fs_used_perc /mnt/HDD} ${else}${if_match ${fs_used_perc /mnt/HDD}<=80}${color C28751}${fs_used_perc /mnt/HDD} ${else}${if_match ${fs_used_perc /mnt/HDD}<=90}${color B06057}${fs_used_perc /mnt/HDD}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif} %
+${color green}${if_match ${fs_used_perc /mnt/HDD}<=20}${color 57B082}${fs_bar  10 /mnt/HDD} ${else}${if_match ${fs_used_perc /mnt/HDD}<=30}${color 57B081}${fs_bar  10 /mnt/HDD} ${else}${if_match ${fs_used_perc /mnt/HDD}<=40}${color 64B057}${fs_bar  10 /mnt/HDD} ${else}${if_match ${fs_used_perc /mnt/HDD}<=50}${color 8EB057}${fs_bar  10 /mnt/HDD}${else}${if_match ${fs_used_perc /mnt/HDD}<=60}${color AAB057}${fs_bar  10 /mnt/HDD} ${else}${if_match ${fs_used_perc /mnt/HDD}<=70}${color B0A357}${fs_bar  10 /mnt/HDD} ${else}${if_match ${fs_used_perc /mnt/HDD}<=80}${color C28751}${fs_bar  10 /mnt/HDD} ${else}${if_match ${fs_used_perc /mnt/HDD}<=90}${color B06057}${fs_bar  10 /mnt/HDD}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}
+
+# network
+${voffset 5}${font FreeSans:Bold:size=10}${color 57B082}NETWORK ${color FFFFFF}${hr 2}
+
+${if_up wlp4s0}${color3}Connection: $alignr ${wireless_essid} WIFI${color3}${else}${if_existing /proc/net/route enp3s0f1}${color3}Connection: $alignr Ethernet ${else}${color3}Connection: $alignr ------$endif$endif
+${if_up wlp4s0}${color3}Local IP: $alignr ${addr wlp4s0}${else}${color3}Local IP: $alignr ${addr enp3s0f1}$endif
+
+${if_up wlp4s0}${color3}${color white}Dowload $alignr ${color B1D0C9}${downspeedf wlp4s0} kb/s${else}${if_existing /proc/net/route enp3s0f1}${color3}Dowload $alignr ${color B1D0C9}${downspeedf enp3s0f1} kb/s${else}${color3}Dowload $alignr ${color B1D0C9}----- $endif$endif
+ ${if_up wlp4s0}${color3}${color white}${color white}${downspeedgraph wlp4s0 34,280 00FF00 990000 -t 100}${else}${if_existing /proc/net/route enp3s0f1}${downspeedgraph enp3s0f1 34,280 00FF00 990000 -t 100}${color3}${else}${color3} $alignr ${color B1D0C9}${font FreeSans:Bold:size=17}${goto 100}not connected $endif$endif
+${if_up wlp4s0}${color3}${color white}${font FreeSans:Bold:size=10}Upload $alignr ${color B1D0C9}${upspeedf wlp4s0} kb/s${else}${if_existing /proc/net/route enp3s0f1}${color3}${font FreeSans:Bold:size=10}Upload $alignr ${color B1D0C9}${upspeedf enp3s0f1} kb/s${else}${color3}${font FreeSans:Bold:size=10}Upload $alignr ${color B1D0C9}----- $endif$endif
+ ${if_up wlp4s0}${color3}${color white}${color white}${upspeedgraph wlp4s0 34,280 00FF00 990000 -t 100}${else}${if_existing /proc/net/route enp3s0f1}${upspeedgraph enp3s0f1 34,280 00FF00 990000 -t 100}${color3}${else}${color3} $alignr ${color B1D0C9}${font FreeSans:Bold:size=17}${goto 100}not connected $endif$endif
+

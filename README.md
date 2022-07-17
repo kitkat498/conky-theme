@@ -1,2 +1,2 @@
 # conky-theme
-here is my conky
+so the border works insert it into ~/.conky
